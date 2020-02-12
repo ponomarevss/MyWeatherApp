@@ -1,2 +1,12 @@
 <resources>
+    <string name="app_name">My Weather App</string>
+    <string name="city">Choose city</string>
+    <string name="temperature">-12°C</string>
+    <string name="weather">Partly cloudy</string>
+    <string name="day0">We, 12</string>
+    <string name="day0_temperature">-12°C</string>
+    <string name="day1">Th, 13</string>
+    <string name="day1_temperature">-12°C</string>
+    <string name="day2">Fr, 14</string>
+    <string name="day2_temperature">-12°C</string>
 </resources>
