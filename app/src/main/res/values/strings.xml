@@ -1,12 +1,22 @@
 <resources>
     <string name="app_name">My Weather App</string>
-    <string name="city">Choose city</string>
+    <string name="city">Ufa</string>
     <string name="temperature">-12°C</string>
     <string name="weather">Partly cloudy</string>
     <string name="day0">We, 12</string>
-    <string name="day0_temperature">-12°C</string>
+    <string name="day0_temperature" translatable="false">-12°C</string>
     <string name="day1">Th, 13</string>
-    <string name="day1_temperature">-12°C</string>
+    <string name="day1_temperature" translatable="false">-12°C</string>
     <string name="day2">Fr, 14</string>
-    <string name="day2_temperature">-12°C</string>
+    <string name="day2_temperature" translatable="false">-12°C</string>
+    <string name="partly_cloudy" translatable="false">partly_cloudy</string>
+    <string name="cloudy" translatable="false">cloudy</string>
+    <string name="sunny" translatable="false">sunny</string>
+    <string name="settings" translatable="false">settings</string>
+    <string name="pressure">Atmospheric pressure</string>
+    <string name="wind">Wind speed and direction</string>
+    <string name="back">Back</string>
+    <string name="location">Location:</string>
+    <string name="set_location">Set location</string>
+    <string name="current_location">not specified</string>
 </resources>
