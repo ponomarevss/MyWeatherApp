@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">My Weather App</string>
-    <string name="city">Ufa</string>
+    <string name="place">set some place</string>
     <string name="temperature">-12°C</string>
     <string name="weather">Partly cloudy</string>
     <string name="day0">We, 12</string>
@@ -16,7 +16,8 @@
     <string name="pressure">Atmospheric pressure</string>
     <string name="wind">Wind speed and direction</string>
     <string name="back">Back</string>
-    <string name="location">Location:</string>
+    <string name="location_label">Location:</string>
     <string name="set_location">Set location</string>
     <string name="current_location">not specified</string>
+    <string name="choose_city">Choose city</string>
 </resources>

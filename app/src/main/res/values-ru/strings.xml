@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Моё погодное приложение</string>
-    <string name="city">Уфа</string>
+    <string name="place">задайте место</string>
     <string name="temperature">-12°C</string>
     <string name="weather">Переменная облачность</string>
     <string name="day0">Ср, 12</string>
@@ -10,7 +10,7 @@
     <string name="pressure">Атмосферное давление</string>
     <string name="wind">Скорость и направление ветра</string>
     <string name="back">Назад</string>
-    <string name="location">Местоположение:</string>
+    <string name="location_label">Местоположение:</string>
     <string name="set_location">Задать местоположение</string>
     <string name="current_location">не задано</string>
 

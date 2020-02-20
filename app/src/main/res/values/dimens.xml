@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="city">20sp</dimen>
+    <dimen name="normal">20sp</dimen>
     <dimen name="temperature">50sp</dimen>
     <dimen name="weather">25sp</dimen>
     <dimen name="small_image">50dp</dimen>
     <dimen name="normal_image">120dp</dimen>
     <dimen name="weather_width">150dp</dimen>
+    <dimen name="normal_margin">50dp</dimen>
+    <dimen name="small_margin">10dp</dimen>
 </resources>
