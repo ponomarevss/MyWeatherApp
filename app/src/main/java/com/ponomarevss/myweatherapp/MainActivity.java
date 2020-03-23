@@ -2,9 +2,9 @@ package com.ponomarevss.myweatherapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
 
         ImageButton settings = findViewById(R.id.settings_button);
         settings.setOnClickListener(new View.OnClickListener() {
@@ -25,6 +25,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        TextView moreInfo = findViewById(R.id.more_info);
+        moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Переходим в браузер", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        TextView lastPlaces = findViewById(R.id.last_places);
+        lastPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Открываем коллекцию мест", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+/*
         String instanceState;
         if (savedInstanceState == null) {
             instanceState = "Первый запуск! ";
@@ -34,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         logInstanceState(instanceState + "MainActivity - onCreate()");
+*/
     }
 
+/*
     private void logInstanceState(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         Log.d("log", s);
@@ -71,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         logInstanceState("MainActivity - onDestroy()");
     }
+*/
 /*
     @Override
     protected void onRestoreInstanceState(Bundle saveInstanceState) {

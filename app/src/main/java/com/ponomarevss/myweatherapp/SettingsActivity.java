@@ -1,9 +1,10 @@
 package com.ponomarevss.myweatherapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,37 +13,59 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class SettingsActivity extends AppCompatActivity {
 
+/*
     private ConstraintLayout settingsScreen;
     private ConstraintLayout setPlaceScreen;
     private int counter = 0;
     private TextView textCounter;
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        settingsScreen = findViewById(R.id.settings_screen);
-        setPlaceScreen = findViewById(R.id.set_place);
+        final ConstraintLayout settingsScreen = findViewById(R.id.settings_screen);
+        final ConstraintLayout placesScreen = findViewById(R.id.places_screen);
+        settingsScreen.setVisibility(View.VISIBLE);
+        placesScreen.setVisibility(View.GONE);
 
-        setScreensVisibility(View.VISIBLE, View.GONE);
-
-        Button setPlaceButton = findViewById(R.id.set_place_button);
-        setPlaceButton.setOnClickListener(new View.OnClickListener() {
+        TextView placesScreenButton = findViewById(R.id.places_screen_button);
+        placesScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setScreensVisibility(View.GONE, View.VISIBLE);
+                settingsScreen.setVisibility(View.GONE);
+                placesScreen.setVisibility(View.VISIBLE);
             }
         });
 
-        Button backButton = findViewById(R.id.back_button);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        Button locate = findViewById(R.id.locate_button);
+        locate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setScreensVisibility(View.VISIBLE, View.GONE);
+                Toast.makeText(SettingsActivity.this, "Определяем место", Toast.LENGTH_SHORT).show();
             }
         });
 
+        ImageButton backToSettingsButton = findViewById(R.id.back_to_settings_button);
+        backToSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settingsScreen.setVisibility(View.VISIBLE);
+                placesScreen.setVisibility(View.GONE);
+            }
+        });
+
+        ImageButton backToMainButton = findViewById(R.id.back_to_main_button);
+        backToMainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+/*
         String instanceState;
         if (savedInstanceState == null) {
             instanceState = "Первый запуск! ";
@@ -61,9 +84,11 @@ public class SettingsActivity extends AppCompatActivity {
                 textCounter.setText(((Integer)counter).toString());
             }
         });
+*/
 
 
     }
+/*
     private void logInstanceState(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
         Log.d("log", s);
@@ -119,4 +144,5 @@ public class SettingsActivity extends AppCompatActivity {
 
         saveInstanceState.putInt("Counter", counter);
     }
+*/
 }

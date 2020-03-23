@@ -9,283 +9,132 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settings_screen"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:visibility="visible">
 
-        <CheckBox
-            android:id="@+id/pressure"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/pressure"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/set_place_button"
+        <ImageButton
+            android:id="@+id/back_to_main_button"
+            android:layout_width="@dimen/image_size_normal"
+            android:layout_height="@dimen/image_size_normal"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@null"
+            android:contentDescription="@string/back_to_main_button"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <CheckBox
-            android:id="@+id/wind"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/wind"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/pressure"
-            app:layout_constraintTop_toBottomOf="@+id/pressure"
-            app:layout_constraintVertical_bias="0.05" />
+            app:srcCompat="@drawable/ic_arrow_back_black_36dp" />
 
         <TextView
-            android:id="@+id/location_label"
+            android:id="@+id/places_screen_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:text="@string/location_label"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/normal"
-            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/set_place"
+            android:textSize="@dimen/text_size_normal"
+            android:textColor="#000"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/current_location"
+        <CheckBox
+            android:id="@+id/wind_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/place"
-            android:textSize="@dimen/normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/location_label"
-            app:layout_constraintTop_toTopOf="@+id/location_label" />
-
-        <!--
-            <Button
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/small_margin"
-                android:layout_marginBottom="@dimen/small_margin"
-                android:text="@string/back"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-        -->
-
-        <Button
-            android:id="@+id/set_place_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:text="@string/set_location"
-            app:layout_constraintStart_toStartOf="@+id/location_label"
-            app:layout_constraintTop_toBottomOf="@+id/location_label" />
-
-        <Button
-            android:id="@+id/increment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginBottom="@dimen/normal_margin"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@string/wind"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
 
-        <TextView
-            android:id="@+id/textCounter"
+        <CheckBox
+            android:id="@+id/humidity_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            app:layout_constraintBottom_toBottomOf="@+id/increment"
-            app:layout_constraintStart_toEndOf="@+id/increment"
-            app:layout_constraintTop_toTopOf="@+id/increment" />
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/humidity"
+            app:layout_constraintStart_toStartOf="@+id/wind_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/wind_checkbox" />
 
+        <CheckBox
+            android:id="@+id/pressure_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/pressure"
+            app:layout_constraintStart_toStartOf="@+id/humidity_checkbox"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_checkbox" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/set_place"
+        android:id="@+id/places_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="gone">
 
+        <ImageButton
+            android:id="@+id/back_to_settings_button"
+            android:layout_width="@dimen/image_size_normal"
+            android:layout_height="@dimen/image_size_normal"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:background="@null"
+            android:contentDescription="@string/back_to_settings_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_back_black_36dp" />
+
         <TextView
-            android:id="@+id/choose_city"
+            android:id="@+id/place_set"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginTop="@dimen/normal_margin"
-            android:text="@string/choose_city"
-            android:textColor="@color/colorAccent"
-            android:textSize="@dimen/normal"
-            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@string/place"
+            android:textSize="@dimen/text_size_normal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/locate_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:text="@string/locate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
         <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="300dp"
-            android:layout_height="450dp"
-            android:layout_marginTop="@dimen/small_margin"
-            app:layout_constraintStart_toStartOf="@+id/choose_city"
-            app:layout_constraintTop_toBottomOf="@+id/choose_city">
+            android:id="@+id/cities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/locate_button">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/city1"
+                    android:id="@+id/city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City1"
-                    android:textSize="@dimen/normal" />
+                    android:padding="@dimen/margin_small"
+                    android:text="@string/city"
+                    android:textSize="@dimen/text_size_normal" />
 
-                <TextView
-                    android:id="@+id/city2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City2"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City3"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City4"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City5"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City6"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City7"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City8"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City9"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City10"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City11"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City12"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City13"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City14"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City15"
-                    android:textSize="@dimen/normal" />
-
-                <TextView
-                    android:id="@+id/city16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
-                    android:gravity="center_vertical"
-                    android:text="City16"
-                    android:textSize="@dimen/normal" />
             </LinearLayout>
+
         </ScrollView>
 
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:layout_marginBottom="@dimen/small_margin"
-            android:text="@string/back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+    </FrameLayout>
 
