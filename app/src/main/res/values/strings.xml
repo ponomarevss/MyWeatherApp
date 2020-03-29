@@ -3,34 +3,34 @@
     <string name="place">set place</string>
     <string name="temperature_value">0</string>
     <string name="weather">Partly cloudy</string>
-    <string name="day0">We, 12</string>
-    <string name="day0_temperature" translatable="false">-12°C</string>
-    <string name="day1">Th, 13</string>
-    <string name="day1_temperature" translatable="false">-12°C</string>
-    <string name="day2">Fr, 14</string>
-    <string name="day2_temperature" translatable="false">-12°C</string>
     <string name="partly_cloudy" translatable="false">partly_cloudy</string>
     <string name="cloudy" translatable="false">cloudy</string>
     <string name="sunny" translatable="false">sunny</string>
     <string name="settings_button" translatable="false">settings</string>
-    <string name="pressure">Atmospheric pressure</string>
-    <string name="wind">Wind speed and direction</string>
     <string name="back">Back</string>
     <string name="place_label">Location:</string>
     <string name="current_location">not specified</string>
     <string name="background" translatable="false">background</string>
+
+    <string name="wind">Wind speed and direction</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Atmospheric pressure</string>
     <string name="m_s">m/s</string>
     <string name="percent">%</string>
     <string name="mmhg">mmHg</string>
+
     <string name="more_info">more info ></string>
     <string name="last_places"><![CDATA[last places >]]></string>
     <string name="day">day</string>
     <string name="temperature_unit">°C</string>
     <string name="hour_value">00:00</string>
-    <string name="humidity">Humidity</string>
-    <string name="set_place"><![CDATA[set place >]]></string>
     <string name="back_to_main_button">back_to_main_button</string>
     <string name="back_to_settings_button">back_to_settings_button</string>
     <string name="locate">locate</string>
     <string name="city">city</string>
+
+    <string name="places_screen_button">%s ></string>
+    <string name="url">https://yandex.ru/pogoda/</string>
+
+
 </resources>
