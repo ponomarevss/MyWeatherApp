@@ -39,7 +39,7 @@
         <item>Челябинск</item>
         <item>Ярославль</item>
     </string-array>
-    <string-array name="cities_uri">
+    <string-array name="cities_url">
         <item>astrahan</item>
         <item>barnaul</item>
         <item>vladivostok</item>

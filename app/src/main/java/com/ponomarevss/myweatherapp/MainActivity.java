@@ -13,12 +13,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.ponomarevss.myweatherapp.Constants.RESULT;
 import static com.ponomarevss.myweatherapp.Constants.SETTINGS;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static int REQUEST_CODE = 1;
+    private Parcel currentParcel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +33,9 @@ public class MainActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView place = findViewById(R.id.place);
-                LinearLayout wind = findViewById(R.id.wind_layout);
-                LinearLayout humidity = findViewById(R.id.humidity_layout);
-                LinearLayout pressure = findViewById(R.id.pressure_layout);
-                Parcel parcel = new Parcel();
-                parcel.setPlace(place.getText().toString());
-                parcel.setWindVisibility(wind.getVisibility());
-                parcel.setHumidityVisibility(humidity.getVisibility());
-                parcel.setPressureVisibility(pressure.getVisibility());
+                currentParcel = createParcel();
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                intent.putExtra(SETTINGS, parcel);
+                intent.putExtra(SETTINGS, currentParcel);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -75,7 +71,14 @@ public class MainActivity extends AppCompatActivity {
         moreInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = getResources().getString(R.string.url);
+                String[] city = getResources().getStringArray(R.array.cities);
+                String[] cityUrl = getResources().getStringArray(R.array.cities_url);
+                Map<String, String> cityHm= new HashMap<>();
+                for (int i = 0; i < city.length; i++) {
+                    cityHm.put(city[i], cityUrl[i]);
+                }
+                TextView currentPlace = findViewById(R.id.place);
+                String url = getResources().getString(R.string.url) + cityHm.get(currentPlace.getText().toString());
                 Uri uri = Uri.parse(url);
                 Intent browser = new Intent(Intent.ACTION_VIEW, uri);
                 ActivityInfo activityInfo = browser.resolveActivityInfo(getPackageManager(), browser.getFlags());
@@ -89,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         lastPlaces.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //заглушка
                 Toast.makeText(MainActivity.this, "Открываем коллекцию мест", Toast.LENGTH_SHORT).show();
             }
         });
@@ -106,18 +110,31 @@ public class MainActivity extends AppCompatActivity {
 */
     }
 
+    private Parcel createParcel() {
+        TextView place = findViewById(R.id.place);
+        LinearLayout wind = findViewById(R.id.wind_layout);
+        LinearLayout humidity = findViewById(R.id.humidity_layout);
+        LinearLayout pressure = findViewById(R.id.pressure_layout);
+        Parcel parcel = new Parcel();
+        parcel.setPlace(place.getText().toString());
+        parcel.setWindVisibility(wind.getVisibility());
+        parcel.setHumidityVisibility(humidity.getVisibility());
+        parcel.setPressureVisibility(pressure.getVisibility());
+        return parcel;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Parcel parcel = (Parcel) data.getExtras().getSerializable(RESULT);
+            currentParcel = (Parcel) data.getExtras().getSerializable(RESULT);
             TextView place = findViewById(R.id.place);
             LinearLayout wind = findViewById(R.id.wind_layout);
             LinearLayout humidity = findViewById(R.id.humidity_layout);
             LinearLayout pressure = findViewById(R.id.pressure_layout);
-            place.setText(parcel.getPlace());
-            wind.setVisibility(parcel.getWindVisibility());
-            humidity.setVisibility(parcel.getHumidityVisibility());
-            pressure.setVisibility(parcel.getPressureVisibility());
+            place.setText(currentParcel.getPlace());
+            wind.setVisibility(currentParcel.getWindVisibility());
+            humidity.setVisibility(currentParcel.getHumidityVisibility());
+            pressure.setVisibility(currentParcel.getPressureVisibility());
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -161,14 +178,14 @@ public class MainActivity extends AppCompatActivity {
 */
 /*
     @Override
-    protected void onRestoreInstanceState(Bundle saveInstanceState) {
-        super.onRestoreInstanceState(saveInstanceState);
-        logInstanceState("Повторный запуск! - MainActivity - onRestoreInstanceState()");
-    }
-    @Override
     protected void onSaveInstanceState(Bundle saveInstanceState) {
         super.onSaveInstanceState(saveInstanceState);
         logInstanceState("MainActivity - onSaveInstanceState()");
+    }
+    @Override
+    protected void onRestoreInstanceState(Bundle saveInstanceState) {
+        super.onRestoreInstanceState(saveInstanceState);
+        logInstanceState("Повторный запуск! - MainActivity - onRestoreInstanceState()");
     }
 */
 }
