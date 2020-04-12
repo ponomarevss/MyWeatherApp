@@ -1,15 +1,20 @@
 package com.ponomarevss.myweatherapp;
 
-import android.view.View;
-
 import java.io.Serializable;
 
 public class Parcel implements Serializable {
 
     private String place;
-    private boolean windVisible;
-    private boolean humidityVisible;
-    private boolean pressureVisible;
+    private boolean windChecked;
+    private boolean humidityChecked;
+    private boolean pressureChecked;
+
+    public Parcel(String place, boolean windChecked, boolean humidityChecked, boolean pressureChecked) {
+        this.place = place;
+        this.windChecked = windChecked;
+        this.humidityChecked = humidityChecked;
+        this.pressureChecked = pressureChecked;
+    }
 
     public String getPlace() {
         return place;
@@ -19,62 +24,29 @@ public class Parcel implements Serializable {
         this.place = place;
     }
 
-    public int getWindVisibility() {
-        return getVisibility(windVisible);
+    public boolean isWindChecked() {
+        return windChecked;
     }
 
-    public boolean isWindVisible() {
-        return windVisible;
+    public void setWindChecked(boolean windChecked) {
+        this.windChecked = windChecked;
     }
 
-    public void setWindVisibility(int windVisibility) {
-        windVisible = windVisibility == View.VISIBLE;
+    public boolean isHumidityChecked() {
+        return humidityChecked;
     }
 
-    public void setWindVisibility(boolean isWindVisible) {
-        windVisible = isWindVisible;
+    public void setHumidityChecked(boolean humidityChecked) {
+        this.humidityChecked = humidityChecked;
     }
 
-    public int getHumidityVisibility() {
-        return getVisibility(humidityVisible);
+    public boolean isPressureChecked() {
+        return pressureChecked;
     }
 
-    public boolean isHumidityVisible() {
-        return humidityVisible;
+    public void setPressureChecked(boolean pressureChecked) {
+        this.pressureChecked = pressureChecked;
     }
 
-    public void setHumidityVisibility(int humidityVisibility) {
-        humidityVisible = humidityVisibility == View.VISIBLE;
-    }
-
-    public void setHumidityVisibility(boolean isHumidityVisible) {
-        humidityVisible = isHumidityVisible;
-    }
-
-    public int getPressureVisibility() {
-        return getVisibility(pressureVisible);
-    }
-
-    public boolean isPressureVisible() {
-        return pressureVisible;
-    }
-
-    public void setPressureVisibility(int pressureVisibility) {
-        pressureVisible = pressureVisibility == View.VISIBLE;
-    }
-
-    public void setPressureVisibility(boolean isPressureVisible) {
-        pressureVisible = isPressureVisible;
-    }
-
-    private int getVisibility(Boolean isVisible) {
-        int visibility = View.GONE;
-        if (isVisible) visibility = View.VISIBLE;
-        return visibility;
-    }
 }
 
-/*
-* сеттеры: передать в парсел инт от вью, передать в парсел булинь от чекбокса
-* геттеры: получить из парсела инт для вью, получить из парсела булинь для чекбокса
-* */

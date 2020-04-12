@@ -1,101 +1,29 @@
 package com.ponomarevss.myweatherapp;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.ponomarevss.myweatherapp.Constants.RESULT;
-import static com.ponomarevss.myweatherapp.Constants.SETTINGS;
+import static com.ponomarevss.myweatherapp.Constants.SET_PLACE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static int REQUEST_CODE = 1;
-    private Parcel currentParcel;
+    private Parcel parcel = new Parcel(SET_PLACE, false, false, false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
-        ImageButton settings = findViewById(R.id.settings_button);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentParcel = createParcel();
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                intent.putExtra(SETTINGS, currentParcel);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-        });
+        if (savedInstanceState == null) {
+            MainFragment fragment = MainFragment.newInstance(parcel);
 
-        //создаем блок почасовой погоды
-        final String[] hours = getResources().getStringArray(R.array.hours);
-        LinearLayout hourlyLayout = findViewById(R.id.hourly_layout);
-        LayoutInflater hoursInflater = getLayoutInflater();
-
-        for (int i = 0; i < hours.length; i++) {
-            final String hour = hours[i];
-            View view = hoursInflater.inflate(R.layout.hour_layout, hourlyLayout, false);
-            TextView hourTextView = view.findViewById(R.id.hour_value);
-            hourTextView.setText(hour);
-            hourlyLayout.addView(view);
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
         }
 
-        //создаем блок трехдневного прогноза
-        final String[] days = getResources().getStringArray(R.array.days);
-        LinearLayout threeDaysForecastLayout = findViewById(R.id.three_days_forecast_layout);
-        LayoutInflater daysInflater = getLayoutInflater();
-
-        for (int i = 0; i < days.length; i++) {
-            final String day = days[i];
-            View view = daysInflater.inflate(R.layout.day_layout, threeDaysForecastLayout, false);
-            TextView hourTextView = view.findViewById(R.id.day_text);
-            hourTextView.setText(day);
-            threeDaysForecastLayout.addView(view);
-        }
-
-
-        TextView moreInfo = findViewById(R.id.more_info);
-        moreInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String[] city = getResources().getStringArray(R.array.cities);
-                String[] cityUrl = getResources().getStringArray(R.array.cities_url);
-                Map<String, String> cityHm= new HashMap<>();
-                for (int i = 0; i < city.length; i++) {
-                    cityHm.put(city[i], cityUrl[i]);
-                }
-                TextView currentPlace = findViewById(R.id.place);
-                String url = getResources().getString(R.string.url) + cityHm.get(currentPlace.getText().toString());
-                Uri uri = Uri.parse(url);
-                Intent browser = new Intent(Intent.ACTION_VIEW, uri);
-                ActivityInfo activityInfo = browser.resolveActivityInfo(getPackageManager(), browser.getFlags());
-                if (activityInfo != null) {
-                    startActivity(browser);
-                }
-            }
-        });
-
-        TextView lastPlaces = findViewById(R.id.last_places);
-        lastPlaces.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //заглушка
-                Toast.makeText(MainActivity.this, "Открываем коллекцию мест", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 /*
         String instanceState;
@@ -105,39 +33,9 @@ public class MainActivity extends AppCompatActivity {
         else {
             instanceState = "Повторный запуск! ";
         }
-
-        logInstanceState(instanceState + "MainActivity - onCreate()");
 */
     }
 
-    private Parcel createParcel() {
-        TextView place = findViewById(R.id.place);
-        LinearLayout wind = findViewById(R.id.wind_layout);
-        LinearLayout humidity = findViewById(R.id.humidity_layout);
-        LinearLayout pressure = findViewById(R.id.pressure_layout);
-        Parcel parcel = new Parcel();
-        parcel.setPlace(place.getText().toString());
-        parcel.setWindVisibility(wind.getVisibility());
-        parcel.setHumidityVisibility(humidity.getVisibility());
-        parcel.setPressureVisibility(pressure.getVisibility());
-        return parcel;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-            currentParcel = (Parcel) data.getExtras().getSerializable(RESULT);
-            TextView place = findViewById(R.id.place);
-            LinearLayout wind = findViewById(R.id.wind_layout);
-            LinearLayout humidity = findViewById(R.id.humidity_layout);
-            LinearLayout pressure = findViewById(R.id.pressure_layout);
-            place.setText(currentParcel.getPlace());
-            wind.setVisibility(currentParcel.getWindVisibility());
-            humidity.setVisibility(currentParcel.getHumidityVisibility());
-            pressure.setVisibility(currentParcel.getPressureVisibility());
-        }
-        super.onActivityResult(requestCode, resultCode, data);
-    }
 
 /*
     private void logInstanceState(String s) {
@@ -179,13 +77,15 @@ public class MainActivity extends AppCompatActivity {
 /*
     @Override
     protected void onSaveInstanceState(Bundle saveInstanceState) {
+        saveInstanceState.putSerializable(INSTANT_STATE, currentParcel);
         super.onSaveInstanceState(saveInstanceState);
-        logInstanceState("MainActivity - onSaveInstanceState()");
     }
     @Override
-    protected void onRestoreInstanceState(Bundle saveInstanceState) {
-        super.onRestoreInstanceState(saveInstanceState);
-        logInstanceState("Повторный запуск! - MainActivity - onRestoreInstanceState()");
+    protected void onRestoreInstanceState(@Nullable Bundle saveInstanceState) {
+        if (saveInstanceState != null){
+            saveInstanceState.getSerializable(INSTANT_STATE);
+            super.onRestoreInstanceState(saveInstanceState);
+        }
     }
 */
 }
