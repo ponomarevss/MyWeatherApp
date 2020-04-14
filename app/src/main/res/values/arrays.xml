@@ -95,4 +95,44 @@
         <item>18:00</item>
         <item>21:00</item>
     </string-array>
+
+    <integer-array name="city_images">
+        <item>@drawable/ci_astrahan</item>
+        <item>@drawable/ci_barnaul</item>
+        <item>@drawable/ci_vladivostok</item>
+        <item>@drawable/ci_volgograd</item>
+        <item>@drawable/ci_voronezh</item>
+        <item>@drawable/ci_yekaterinburg</item>
+        <item>@drawable/ci_izhevsk</item>
+        <item>@drawable/ci_irkutsk</item>
+        <item>@drawable/ci_kazan</item>
+        <item>@drawable/ci_kemerovo</item>
+        <item>@drawable/ci_kirov</item>
+        <item>@drawable/ci_krasnodar</item>
+        <item>@drawable/ci_krasnoyarsk</item>
+        <item>@drawable/ci_lipetsk</item>
+        <item>@drawable/ci_makhachkala</item>
+        <item>@drawable/ci_moscow</item>
+        <item>@drawable/ci_naberezhnie_chelny</item>
+        <item>@drawable/ci_nizhny_novgorod</item>
+        <item>@drawable/ci_novokuznetsk</item>
+        <item>@drawable/ci_novosibirsk</item>
+        <item>@drawable/ci_omsk</item>
+        <item>@drawable/ci_orenburg</item>
+        <item>@drawable/ci_penza</item>
+        <item>@drawable/ci_perm</item>
+        <item>@drawable/ci_rostov_na_donu</item>
+        <item>@drawable/ci_ryazan</item>
+        <item>@drawable/ci_saint_petersburg</item>
+        <item>@drawable/ci_samara</item>
+        <item>@drawable/ci_saratov</item>
+        <item>@drawable/ci_togliatti</item>
+        <item>@drawable/ci_tomsk</item>
+        <item>@drawable/ci_tyumen</item>
+        <item>@drawable/ci_ulyanovsk</item>
+        <item>@drawable/ci_ufa</item>
+        <item>@drawable/ci_khabarovsk</item>
+        <item>@drawable/ci_chelyabinsk</item>
+        <item>@drawable/ci_yaroslavl</item>
+    </integer-array>
 </resources>

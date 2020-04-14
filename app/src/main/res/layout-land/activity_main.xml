@@ -2,7 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/background"
@@ -14,7 +15,9 @@
         android:clickable="false"
         android:contentDescription="@string/background"
         android:visibility="gone"
-        app:srcCompat="@drawable/spring_day_04" />
+        app:srcCompat="@drawable/background_default"
+        tools:srcCompat="@drawable/ci_yekaterinburg"
+        tools:visibility="visible" />
 
     <LinearLayout
         android:layout_width="match_parent"

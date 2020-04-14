@@ -27,6 +27,8 @@ public class SettingsFragment extends Fragment {
     private CheckBox humidityCheckBox;
     private CheckBox pressureCheckBox;
 
+    private boolean isLandscape;
+
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -69,6 +71,8 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+
         windCheckBox = view.findViewById(R.id.wind_checkbox);
         humidityCheckBox = view.findViewById(R.id.humidity_checkbox);
         pressureCheckBox = view.findViewById(R.id.pressure_checkbox);
@@ -80,7 +84,7 @@ public class SettingsFragment extends Fragment {
         final TextView arrow = view.findViewById(R.id.arrow);
 
         //создание фрагмента задание места
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (isLandscape) {
             arrow.setVisibility(View.GONE);
             toPlacesFragment(R.id.next_fragment_container);
         }
@@ -88,7 +92,7 @@ public class SettingsFragment extends Fragment {
         //переход на фрагмент задания места
         placeTextView = view.findViewById(R.id.places_screen_button);
         placeTextView.setText(parcel.getPlace());
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (!isLandscape) {
             placeTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
